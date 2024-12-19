@@ -10,10 +10,12 @@ const jobSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    requirements: {
-      type: String,
-      require: true,
-    },
+    requirements: [
+      {
+        type: String,
+        require: true,
+      },
+    ],
     salary: {
       type: Number,
     },
@@ -42,7 +44,9 @@ const jobSchema = new mongoose.Schema(
       ref: "User",
       require: true,
     },
-    application: [{ type: mongoose.Schema.Types.ObjectId, ref: "Application" }],
+    applications: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Application" },
+    ],
   },
   { timestamps: true }
 );
