@@ -14,6 +14,15 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const [image, setImage] = useState("");
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
+
   const togglePasswordVisibilty = () => {
     setPasswordVisibility(!isPasswordVisible);
   };
@@ -36,13 +45,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     formData.role = selectRole;
+    formData.image = image;
 
     if (
       !formData.fullname ||
       !formData.email ||
       !formData.phone ||
       !formData.password ||
-      !formData.role
+      !formData.role ||
+      !formData.image
     ) {
       toast.error("Please fill in all fields");
       return;
@@ -51,13 +62,14 @@ const Register = () => {
     try {
       setLoading(true);
       console.log(formData);
+
+      const form = new FormData();
+      Object.keys(formData).forEach((key) => form.append(key, formData[key]));
+
       const res = await fetch(`${baseUrl}/api/auth/register`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         credentials: "include",
-        body: JSON.stringify(formData),
+        body: form,
       });
       console.log(res);
 
@@ -79,6 +91,7 @@ const Register = () => {
       toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
+      setImage("");
     }
   };
 
@@ -138,7 +151,7 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex justify-between gap-4">
                 <label
                   className={`flex items-center justify-center w-40 py-3 rounded-lg cursor-pointer font-medium text-white ${
                     selectRole === "student"
@@ -175,9 +188,27 @@ const Register = () => {
                 </label>
               </div>
 
+              {/* Image Upload */}
+              <div className="flex items-center justify-between p-2 bg-white rounded shadow-md w-full space-x-4">
+                <label
+                  htmlFor="fileInput"
+                  className="text-sm w-1/3 font-medium text-gray-700"
+                >
+                  Upload Profile:
+                </label>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="text-sm w-2/3 text-gray-600 file:mr-1 file:py-2 file:px-2 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+              </div>
+
               <button
                 className="text-white py-2 rounded-xl hover:scale-105 duration-300 bg-green-600 hover:bg-green-700 font-medium"
                 type="submit"
+                disabled={loading}
               >
                 {loading ? (
                   <span className="loading loading-spinner"></span>
