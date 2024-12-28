@@ -16,12 +16,33 @@ const Navbar = () => {
           </a>
         </div>
         <div className="flex-none gap-10 font-semibold">
-          <div className="flex gap-4 text-2xl">
-            <a className="cursor-pointer">Jobs</a>
-            <a className="cursor-pointer">Browse</a>
-            <a className="cursor-pointer">Companies</a>
-            <a className="cursor-pointer">Jobs</a>
+          <div className="flex gap-6 text-2xl font-medium text-white">
+            <Link
+              to="/jobs"
+              className="hover:text-blue-500 transition-colors duration-300"
+            >
+              Jobs
+            </Link>
+            <Link
+              to="/browse"
+              className="hover:text-blue-500 transition-colors duration-300"
+            >
+              Browse
+            </Link>
+            <Link
+              to="/companies"
+              className="hover:text-blue-500 transition-colors duration-300"
+            >
+              Companies
+            </Link>
+            <Link
+              to="/jobs"
+              className="hover:text-blue-500 transition-colors duration-300"
+            >
+              Jobs
+            </Link>
           </div>
+
           <div className="flex gap-4">
             <Link to="/login">
               <Button variant="secondary">LogIn</Button>
