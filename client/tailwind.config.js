@@ -51,6 +51,20 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
+      animation: {
+        typewriter: "typewriter 4s steps(40) 1s infinite normal both",
+        erase: "erase 1s steps(40) forwards",
+      },
+      keyframes: {
+        typewriter: {
+          "0%": { width: "0" },
+          "100%": { width: "100%" },
+        },
+        erase: {
+          "0%": { width: "100%" },
+          "100%": { width: "0" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("daisyui")],

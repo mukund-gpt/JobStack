@@ -5,6 +5,8 @@ import { RxEyeOpen } from "react-icons/rx";
 import { baseUrl } from "@/utils/baseUrl";
 import jobImage from "../../assests/job.jpg";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/authSlice";
 
 const Login = () => {
   const [selectRole, setSelectRole] = useState("");
@@ -12,6 +14,7 @@ const Login = () => {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const togglePasswordVisibilty = () => {
     setPasswordVisibility(!isPasswordVisible);
@@ -52,7 +55,7 @@ const Login = () => {
       console.log(data);
 
       if (data.success) {
-        // dispatch(setAuthUser(data.user));
+        dispatch(setUser(data.user));
         toast.success(`${data.message}`);
         navigate("/");
       } else {
@@ -141,6 +144,7 @@ const Login = () => {
               <button
                 className="text-white py-2 rounded-xl hover:scale-105 duration-300 bg-green-600 hover:bg-green-700 font-medium"
                 type="submit"
+                disabled={loading}
               >
                 {loading ? (
                   <span className="loading loading-spinner"></span>

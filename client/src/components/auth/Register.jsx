@@ -5,6 +5,8 @@ import { RxEyeOpen } from "react-icons/rx";
 import { baseUrl } from "@/utils/baseUrl";
 import jobImage from "../../assests/job.jpg";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/authSlice";
 
 const Register = () => {
   const [selectRole, setSelectRole] = useState("");
@@ -13,6 +15,7 @@ const Register = () => {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
 
@@ -81,7 +84,7 @@ const Register = () => {
       console.log(data);
 
       if (data.success) {
-        // dispatch(setAuthUser(data.user));
+        dispatch(setUser(data.user));
         toast.success("Registration Success");
         navigate("/");
       } else {
