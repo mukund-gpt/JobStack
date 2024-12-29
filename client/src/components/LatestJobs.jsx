@@ -10,7 +10,7 @@ const LatestJobs = () => {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-5 gap-5">
         {random.map((item, index) => (
-          <LatestJobCards />
+          <LatestJobCards key={index} />
         ))}
       </div>
     </div>
