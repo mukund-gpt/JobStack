@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const Job = () => {
+  const id = "qwertyuiop[";
   return (
     <div>
       <div className="bg-[#fefcff] border border-pink-200 rounded-lg p-5 shadow-lg shadow-orange-200">
@@ -31,7 +33,9 @@ const Job = () => {
           </span>
         </div>
         <div className="flex justify-around mt-3">
-          <Button className="bg-red-400 hover:bg-red-500">Details</Button>
+          <Link to={`/jobs/details/${id}`}>
+            <Button className="bg-red-400 hover:bg-red-500">Details</Button>
+          </Link>
           <Button className="bg-blue-400 hover:bg-blue-500">
             Save for Later
           </Button>
