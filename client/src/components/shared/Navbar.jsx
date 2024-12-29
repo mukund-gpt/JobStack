@@ -12,16 +12,16 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="navbar bg-orange-500 text-white">
+      <div className="navbar bg-orange-500 text-white min-w-[400px]">
         <div className="flex-1">
-          <Link to="/" className="text-3xl font-bold ml-4">
+          <Link to="/" className="text-2xl sm:text-3xl font-bold mx-1 sm:ml-4">
             <span>Job</span>
             <span className="text-black">Stack</span>
           </Link>
         </div>
-        <div className="flex-none gap-10 font-semibold">
+        <div className="flex-none gap-3 sm:gap-10 font-semibold">
           {user && (
-            <div className="flex gap-6 text-2xl font-medium text-white">
+            <div className="flex gap-3 sm:gap-6 text-xl sm:text-2xl font-medium text-white">
               {user?.role === "student" ? (
                 <>
                   <Link
@@ -56,7 +56,7 @@ const Navbar = () => {
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-2 sm:gap-4">
             {!user ? (
               <>
                 <Link to="/login">

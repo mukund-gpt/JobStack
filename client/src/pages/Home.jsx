@@ -7,7 +7,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col min-w-[400px]">
       <Navbar />
       <HeroSection />
       <CategoryCarousel />
