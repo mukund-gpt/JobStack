@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
-  console.log(user);
+  // console.log(user);
 
   const logoutHandler = () => {
     alert("logout");
@@ -73,13 +73,15 @@ const Navbar = () => {
             )}
           </div>
 
-          <Link to="/profile">
-            <div className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src={user?.profile?.profilePic} />
+          {user && (
+            <Link to="/profile">
+              <div className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.profile?.profilePic} />
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          )}
         </div>
       </div>
     </div>

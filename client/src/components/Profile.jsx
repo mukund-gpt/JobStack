@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "./shared/Navbar";
 import { Contact, Mail, UserRoundPen } from "lucide-react";
 import Footer from "./shared/Footer";
 import AppliedJobTable from "./AppliedJobTable";
+import EditProfileDialog from "./EditProfileDialog";
 
 const Profile = () => {
   const { user } = useSelector((store) => store.auth);
+  const [open, setOpen] = useState(false);
   const skills = [1, 2, 3, 4, 5];
   return (
     <div>
@@ -20,7 +22,10 @@ const Profile = () => {
             <hr />
           </div>
           <div className="w-full flex justify-end">
-            <UserRoundPen className="h-6 w-6 text-blue-500 m-2 cursor-pointer" />
+            <UserRoundPen
+              className="h-6 w-6 text-blue-500 m-2 cursor-pointer"
+              onClick={() => setOpen(true)}
+            />
           </div>
 
           <div className="w-3/4 sm:w-2/3 mx-auto flex gap-8 justify-center items-center">
@@ -74,6 +79,7 @@ const Profile = () => {
 
         {/* Applied Jobs  */}
         <AppliedJobTable />
+        <EditProfileDialog open={open} setOpen={setOpen} />
       </div>
       <Footer />
     </div>
