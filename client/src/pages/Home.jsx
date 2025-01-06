@@ -3,11 +3,13 @@ import HeroSection from "@/components/HeroSection";
 import LatestJobs from "@/components/LatestJobs";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
+import useGetAllJobs from "@/hooks/useGetAllJobs";
 import React from "react";
 
 const Home = () => {
+  useGetAllJobs();
   return (
-    <div className="h-screen flex flex-col min-w-[400px]">
+    <div className="h-screen flex flex-col min-w-[400px] overflow-y-auto scrollbar-hide">
       <Navbar />
       <HeroSection />
       <CategoryCarousel />

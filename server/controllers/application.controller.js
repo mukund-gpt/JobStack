@@ -8,12 +8,12 @@ export const applyJob = async (req, res) => {
 
     const job = await Job.findById(jobId);
     if (!job) {
-      return res.status(404).json({ message: "Job not found", success: false });
+      return res.json({ message: "Job not found", success: false });
     }
 
     const existingApp = await Application.findOne({ jobId, applicantId });
     if (existingApp) {
-      return res.status(400).json({
+      return res.json({
         message: "You have already applied for this job",
         success: false,
       });
