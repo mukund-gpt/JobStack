@@ -1,14 +1,31 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { baseUrl } from "@/utils/baseUrl";
+import { setUser } from "@/redux/authSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
   // console.log(user);
 
-  const logoutHandler = () => {
-    alert("logout");
+  const logoutHandler = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/api/auth/logout`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await res.json();
+      toast.success(data.message);
+      if (data.success) {
+        dispatch(setUser(null));
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -20,24 +37,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex-none gap-3 sm:gap-10 font-semibold">
-          {user && (
+          {
             <div className="flex gap-3 sm:gap-6 text-xl sm:text-2xl font-medium text-white">
-              {user?.role === "student" ? (
-                <>
-                  <Link
-                    to="/jobs"
-                    className="hover:text-blue-500 transition-colors duration-300"
-                  >
-                    Jobs
-                  </Link>
-                  <Link
-                    to="/browse"
-                    className="hover:text-blue-500 transition-colors duration-300"
-                  >
-                    Browse
-                  </Link>
-                </>
-              ) : (
+              {user?.role === "recruiter" ? (
                 <>
                   <Link
                     to="/companies"
@@ -52,9 +54,24 @@ const Navbar = () => {
                     Jobs
                   </Link>
                 </>
+              ) : (
+                <>
+                  <Link
+                    to="/jobs"
+                    className="hover:text-blue-500 transition-colors duration-300"
+                  >
+                    Jobs
+                  </Link>
+                  <Link
+                    to="/browse"
+                    className="hover:text-blue-500 transition-colors duration-300"
+                  >
+                    Browse
+                  </Link>
+                </>
               )}
             </div>
-          )}
+          }
 
           <div className="flex gap-2 sm:gap-4">
             {!user ? (

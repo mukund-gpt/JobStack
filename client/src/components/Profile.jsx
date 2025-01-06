@@ -71,7 +71,9 @@ const Profile = () => {
             <div className="flex items-center">
               <p className="m-2">Resume</p>
               <p className="cursor-pointer hover:text-gray-700 hover:underline">
-                {user?.profile?.resumeOriginalName}
+                <a href={user?.profile?.resume} target="_blank">
+                  {user?.profile?.resumeOriginalName}
+                </a>
               </p>
             </div>
           </div>
