@@ -17,7 +17,7 @@ export const updateProfile = async (req, res) => {
     if (email) user.email = email;
     if (phone) user.phone = phone;
     if (bio) user.profile.bio = bio;
-    if (skills) user.profile.skills = skills.split(",");
+    if (skills) user.profile.skills = skills.split(",").map((s) => s.trim());
 
     if (resume) {
       const fileUri = getDataUri(resume);
