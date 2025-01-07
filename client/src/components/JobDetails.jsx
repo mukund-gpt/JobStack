@@ -61,6 +61,7 @@ const JobDetails = () => {
       const data = await res.json();
       if (data.success) {
         setIsApplied(true);
+        toast.success(data.message);
         console.log(data.newApplication);
         const updatedApp = [
           ...(singleJob?.applications || []),
@@ -159,7 +160,7 @@ const JobDetails = () => {
             </div>
             <div className="text-center m-3">
               {isApplied ? (
-                <button className="btn btn-primary border-none bg-gray-400 text-white text-[1.3rem] cursor-not-allowed">
+                <button className="btn btn-primary border-none bg-gray-400 hover:bg-gray-400 text-white text-[1.3rem] cursor-not-allowed">
                   Applied
                 </button>
               ) : (
