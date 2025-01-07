@@ -11,10 +11,10 @@ const LatestJobs = () => {
         Latest Job Openings
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-5 gap-5">
-        {allJobs.length == 0 ? (
+        {allJobs?.length == 0 ? (
           <span>No jobs available</span>
         ) : (
-          allJobs.map((job) => <LatestJobCards key={job?._id} job={job} />)
+          allJobs?.map((job) => <LatestJobCards key={job?._id} job={job} />)
         )}
       </div>
     </div>

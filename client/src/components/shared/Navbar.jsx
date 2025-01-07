@@ -42,13 +42,13 @@ const Navbar = () => {
               {user?.role === "recruiter" ? (
                 <>
                   <Link
-                    to="/companies"
+                    to="/admin/companies"
                     className="hover:text-blue-500 transition-colors duration-300"
                   >
                     Companies
                   </Link>
                   <Link
-                    to="/jobs"
+                    to="/admin/jobs"
                     className="hover:text-blue-500 transition-colors duration-300"
                   >
                     Jobs
@@ -91,13 +91,23 @@ const Navbar = () => {
           </div>
 
           {user && (
-            <Link to="/profile">
-              <div className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user?.profile?.profilePic} />
+            <>
+              {user.role !== "recruiter" ? (
+                <Link to="/profile">
+                  <div className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={user?.profile?.profilePic} alt="Profile" />
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <div className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user?.profile?.profilePic} alt="Profile" />
+                  </div>
                 </div>
-              </div>
-            </Link>
+              )}
+            </>
           )}
         </div>
       </div>

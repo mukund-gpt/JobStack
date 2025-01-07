@@ -4,7 +4,7 @@ import Footer from "./shared/Footer";
 import { baseUrl } from "@/utils/baseUrl";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setSingleJob } from "@/redux/jobSlice";
 
 const JobDetails = () => {
@@ -12,6 +12,7 @@ const JobDetails = () => {
   const { singleJob } = useSelector((store) => store.job);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [isApplied, setIsApplied] = useState(false);
@@ -70,7 +71,10 @@ const JobDetails = () => {
 
         dispatch(setSingleJob({ ...singleJob, applications: updatedApp }));
       } else {
-        toast(data.message);
+        toast.error(data.message);
+        if (data.message === "Unauthorised") {
+          navigate("/login");
+        }
       }
     } catch (error) {
       toast.error(error.message);

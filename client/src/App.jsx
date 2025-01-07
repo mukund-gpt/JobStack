@@ -8,6 +8,8 @@ import Browse from "./components/Browse";
 import Profile from "./components/Profile";
 import JobDetails from "./components/JobDetails";
 import { useSelector } from "react-redux";
+import Companies from "./components/admin/Companies";
+import CreateCompanies from "./components/admin/CreateCompanies";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
@@ -15,6 +17,7 @@ const App = () => {
   return (
     <>
       <Routes>
+        {/* Public Routes */}
         <Route
           path="/register"
           element={!user ? <Register /> : <Navigate to="/" />}
@@ -23,14 +26,29 @@ const App = () => {
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
         />
-        <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/jobs/details/:id" element={<JobDetails />} />
-        <Route path="/browse" element={<Browse />} />
-        <Route
-          path="/profile"
-          element={user ? <Profile /> : <Navigate to="/" />}
-        />
+
+        {/* Routes for Students Only */}
+        {user?.role !== "recruiter" && (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/jobs/details/:id" element={<JobDetails />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route
+              path="/profile"
+              element={user ? <Profile /> : <Navigate to="/" />}
+            />
+          </>
+        )}
+
+        {/* Admin Routes */}
+        <>
+          <Route path="/" element={<Companies />} />
+          <Route path="/admin/companies" element={<Companies />} />
+          <Route path="/admin/companies/create" element={<CreateCompanies />} />
+        </>
+
+        <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
       </Routes>
     </>
   );
