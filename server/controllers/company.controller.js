@@ -1,8 +1,13 @@
 import { Company } from "../models/company.model.js";
+import cloudinary from "../utils/cloudinary.js";
+import getDataUri from "../utils/datauri.js";
 
 export const registerCompany = async (req, res) => {
   try {
     const { companyName } = req.body;
+    if (!companyName) {
+      return res.json({ message: "Company name is required" });
+    }
 
     let company = await Company.findOne({ companyName });
     if (company) {
@@ -24,6 +29,7 @@ export const registerCompany = async (req, res) => {
 export const updateCompany = async (req, res) => {
   try {
     const { companyName, description, website, location } = req.body;
+    const logo = req.file;
 
     let company = await Company.findById(req.params.id);
     if (!company) {
@@ -34,7 +40,13 @@ export const updateCompany = async (req, res) => {
     if (description) company.description = description;
     if (website) company.website = website;
     if (location) company.location = location;
-    // if (logo) company.logo = logo;
+    if (logo) {
+      const fileUri = getDataUri(logo);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri, {
+        folder: "JobStack",
+      });
+      company.logo = cloudResponse.secure_url;
+    }
     await company.save();
 
     return res.json({ message: "Company updated", success: true, company });

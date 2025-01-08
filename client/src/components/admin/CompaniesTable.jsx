@@ -8,8 +8,21 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { useDispatch, useSelector } from "react-redux";
+import { PencilLine } from "lucide-react";
+import { setSingleCompany } from "@/redux/companySlice";
+import { useNavigate } from "react-router-dom";
 
 const CompaniesTable = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { allCompanies } = useSelector((store) => store.company);
+
+  const editHandler = (company) => {
+    dispatch(setSingleCompany(company));
+    navigate(`/admin/companies/edit/${company._id}`);
+  };
   return (
     <>
       <div className="w-full sm:w-3/4 mx-auto p-2 m-2">
@@ -23,38 +36,28 @@ const CompaniesTable = () => {
               <TableHead>Logo</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Date</TableHead>
-              <TableHead>Action</TableHead>
+              <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell>
-                <div className="avatar w-10 h-10">
-                  <img
-                    src="https://res.cloudinary.com/dk7sjwqoi/image/upload/v1736243183/JobStack/sltywbeb8jli65tob2i0.png"
-                    alt="Logo"
+            {allCompanies?.map((company) => (
+              <TableRow key={company?._id}>
+                <TableCell>
+                  <div className="avatar w-10 h-10">
+                    <img src={company?.logo} alt="Logo" />
+                  </div>
+                </TableCell>
+                <TableCell>{company?.companyName}</TableCell>
+                <TableCell>{company?.createdAt.split("T")[0]}</TableCell>
+                <TableCell className="text-right flex justify-end items-center">
+                  <PencilLine
+                    className="text-gray-500 cursor-pointer"
+                    onClick={() => editHandler(company)}
                   />
-                </div>
-              </TableCell>
-              <TableCell>Company Name</TableCell>
-              <TableCell>21-12-1222</TableCell>
-              <TableCell>Edit</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell>
-                <div className="avatar w-10 h-10">
-                  <img
-                    src="https://res.cloudinary.com/dk7sjwqoi/image/upload/v1736243183/JobStack/sltywbeb8jli65tob2i0.png"
-                    alt="Logo"
-                  />
-                </div>
-              </TableCell>
-              <TableCell>Company Name</TableCell>
-              <TableCell>21-12-1222</TableCell>
-              <TableCell>Edit</TableCell>
-            </TableRow>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>
