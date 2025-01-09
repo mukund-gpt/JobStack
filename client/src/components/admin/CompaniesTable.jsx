@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -13,15 +13,27 @@ import { PencilLine } from "lucide-react";
 import { setSingleCompany } from "@/redux/companySlice";
 import { useNavigate } from "react-router-dom";
 
-const CompaniesTable = () => {
+const CompaniesTable = ({ searchInput }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { allCompanies } = useSelector((store) => store.company);
+  const [filterCompanies, setFilterCompanies] = useState(allCompanies);
+
+  useEffect(() => {
+    const filteredCompanies =
+      allCompanies?.filter((company) => {
+        if (!searchInput) return true;
+        return company?.companyName
+          ?.toLowerCase()
+          .includes(searchInput.toLowerCase());
+      }) || [];
+    setFilterCompanies(filteredCompanies);
+  }, [allCompanies, searchInput]);
 
   const editHandler = (company) => {
     dispatch(setSingleCompany(company));
-    navigate(`/admin/companies/edit/${company._id}`);
+    navigate(`/admin/companies/edit/${company?._id}`);
   };
   return (
     <>
@@ -41,7 +53,7 @@ const CompaniesTable = () => {
           </TableHeader>
 
           <TableBody>
-            {allCompanies?.map((company) => (
+            {filterCompanies?.map((company) => (
               <TableRow key={company?._id}>
                 <TableCell>
                   <div className="avatar w-10 h-10">
