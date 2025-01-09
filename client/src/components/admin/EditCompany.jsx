@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import Navbar from "../shared/Navbar";
@@ -19,12 +19,24 @@ const EditCompany = () => {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
-    companyName: singleCompany?.companyName || "",
-    description: singleCompany?.description || "",
-    website: singleCompany?.website || "",
-    location: singleCompany?.location || "",
-    logo: singleCompany?.logo || "",
+    companyName: "",
+    description: "",
+    website: "",
+    location: "",
+    logo: "",
   });
+
+  useEffect(() => {
+    if (singleCompany) {
+      setInput({
+        companyName: singleCompany.companyName || "",
+        description: singleCompany.description || "",
+        website: singleCompany.website || "",
+        location: singleCompany.location || "",
+        logo: singleCompany.logo || "",
+      });
+    }
+  }, [singleCompany]);
 
   const fileChangeHandler = (e) => {
     const file = e.target.files[0];
@@ -60,7 +72,15 @@ const EditCompany = () => {
         toast.success(data.message);
         dispatch(setAllCompanies([...allCompanies, data.company]));
         dispatch(setSingleCompany(null));
-        setInput({});
+        setInput({
+          companyName: "",
+          description: "",
+          website: "",
+          location: "",
+          logo: "",
+        });
+        setPreview("");
+
         navigate("/");
       } else {
         toast.error(data.message);
@@ -72,6 +92,15 @@ const EditCompany = () => {
       setLoading(false);
     }
   };
+
+  if (!singleCompany) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="w-full">
