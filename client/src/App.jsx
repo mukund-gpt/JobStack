@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import Companies from "./components/admin/Companies";
 import CreateCompanies from "./components/admin/CreateCompanies";
 import EditCompany from "./components/admin/EditCompany";
+import AdminJobs from "./components/admin/AdminJobs";
+import CreateJob from "./components/admin/CreateJob";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
@@ -48,6 +50,8 @@ const App = () => {
           <Route path="/admin/companies" element={<Companies />} />
           <Route path="/admin/companies/create" element={<CreateCompanies />} />
           <Route path="/admin/companies/edit/:id" element={<EditCompany />} />
+          <Route path="/admin/jobs" element={<AdminJobs />} />
+          <Route path="/admin/jobs/create" element={<CreateJob />} />
         </>
 
         <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />

@@ -1,0 +1,12 @@
+/* Styles to remove the spinner and handle hover state */
+.input-no-spinner {
+  -webkit-appearance: none; /* Chrome, Safari */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none; /* Standard */
+}
+
+.input-no-spinner:hover {
+  -webkit-appearance: none; /* Chrome, Safari */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: none; /* Standard */
+}
