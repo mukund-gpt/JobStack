@@ -114,7 +114,16 @@ const Applications = () => {
 
             <TableBody>
               {applications?.map((application) => (
-                <TableRow key={application?._id}>
+                <TableRow
+                  key={application?._id}
+                  className={`${
+                    application?.status === "accepted"
+                      ? "bg-green-100 hover:bg-green-200"
+                      : application?.status === "rejected"
+                      ? "bg-red-100 hover:bg-red-200"
+                      : "bg-yellow-100 hover:bg-yellow-200"
+                  }`}
+                >
                   <TableCell>{application?.applicantId?.fullname}</TableCell>
                   <TableCell>{application?.applicantId?.email}</TableCell>
                   <TableCell>{application?.applicantId?.phone}</TableCell>
