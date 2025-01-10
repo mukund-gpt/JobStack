@@ -7,6 +7,9 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { Button } from "./ui/button";
+import { setSearchQuery } from "@/redux/jobSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const category = [
   "frontend developer",
@@ -20,6 +23,15 @@ const category = [
 ];
 
 const CategoryCarousel = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const clickHandler = (item) => {
+    // console.log(item);
+    dispatch(setSearchQuery(item));
+    navigate(`/browse?search=${item}`);
+  };
+
   return (
     <div className="w-full">
       <Carousel
@@ -35,7 +47,10 @@ const CategoryCarousel = () => {
               className="flex justify-center sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
             >
               <div className="p-2">
-                <Button className="flex aspect-square items-center justify-center p-4 bg-white text-black hover:bg-gray-50 hover:text-black">
+                <Button
+                  className="flex aspect-square items-center justify-center p-4 bg-white hover:bg-gray-50"
+                  onClick={() => clickHandler(item)}
+                >
                   <span className="text-xl font-semibold text-green-400">
                     {item}
                   </span>

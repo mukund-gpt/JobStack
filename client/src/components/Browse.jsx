@@ -2,9 +2,12 @@ import React from "react";
 import Navbar from "./shared/Navbar";
 import Job from "./Job";
 import Footer from "./shared/Footer";
+import UseGetSearchJobs from "@/hooks/UseGetSearchJobs";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
-  const random = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const { searchJobs } = useSelector((store) => store.job);
+  UseGetSearchJobs();
   return (
     <div className="w-full">
       <Navbar />
@@ -12,16 +15,16 @@ const Browse = () => {
         <div className="h-[80vh] flex flex-col">
           <div className="overflow-y-auto scrollbar-hide">
             <h1 className="text-xl font-semibold text-red-400 m-2 p-2">
-              Search Results (4)
+              Search Results ({searchJobs?.length})
             </h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-2 p-2">
-              {random.length == 0 ? (
+              {searchJobs?.length == 0 ? (
                 <p>No jobs found</p>
               ) : (
-                random.map((item, index) => (
+                searchJobs?.map((job, index) => (
                   <div key={index}>
-                    <Job />
+                    <Job job={job} />
                   </div>
                 ))
               )}

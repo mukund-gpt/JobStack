@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { setSearchQuery } from "@/redux/jobSlice";
+import { useDispatch } from "react-redux";
 
 const HeroSection = () => {
-  const [query, setQuery] = useState(""); // Track the input query
-  const navigate = useNavigate(); // Navigate to other routes
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Handle query input change
-  const handleQueryChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  // Search job handler with navigation
   const searchJobHandler = () => {
-    if (query.trim()) {
-      // Navigate to browse page with query as search param
+    if (query?.trim()) {
+      dispatch(setSearchQuery(query));
       navigate(`/browse?search=${query}`);
     }
   };
@@ -33,12 +30,12 @@ const HeroSection = () => {
           <input
             type="text"
             placeholder="Find your dream job here"
-            value={query} // Bind input to query state
-            onChange={handleQueryChange} // Update state when input changes
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             className="px-6 py-3 w-2/5 border text-black bg-white border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <button
-            onClick={searchJobHandler} // Trigger search handler on click
+            onClick={searchJobHandler}
             className="bg-green-500 text-white px-6 py-3 rounded-md shadow-lg hover:bg-green-600 transition duration-300"
           >
             <Search className="h-6 w-6 text-white" />
