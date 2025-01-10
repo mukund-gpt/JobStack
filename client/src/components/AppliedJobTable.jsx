@@ -8,8 +8,20 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
 const AppliedJobTable = () => {
+  const { appliedJobs, loading } = useGetAppliedJobs();
+  // console.log(appliedJobs);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[40vh]">
+        <div className="loading loading-spinner loading-lg text-purple-400"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="w-[90vw] sm:w-[80vw] mx-auto my-5 shadow-md rounded-md shadow-amber-300">
@@ -28,14 +40,22 @@ const AppliedJobTable = () => {
             </TableHeader>
 
             <TableBody>
-              {[1, 3, 4, 6, 7, 8].map((item, index) => (
+              {appliedJobs?.map((item, index) => (
                 <TableRow key={index} className="">
-                  <TableCell>17-07-2024</TableCell>
-                  <TableCell>Frontend developer</TableCell>
-                  <TableCell>Google</TableCell>
+                  <TableCell>{item?.createdAt?.split("T")[0]}</TableCell>
+                  <TableCell>{item?.jobId?.title}</TableCell>
+                  <TableCell>{item?.jobId?.company?.companyName}</TableCell>
                   <TableCell className="text-right ">
-                    <div className="badge bg-white text-red-500 font-bold border-gray-300 p-3">
-                      pending
+                    <div
+                      className={`badge bg-white font-bold border-gray-300 p-3 ${
+                        item?.status === "accepted"
+                          ? "text-green-500"
+                          : item?.status === "rejected"
+                          ? "text-red-500"
+                          : "text-yellow-500"
+                      }`}
+                    >
+                      {item?.status}
                     </div>
                   </TableCell>
                 </TableRow>
