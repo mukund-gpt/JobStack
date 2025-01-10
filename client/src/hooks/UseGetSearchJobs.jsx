@@ -20,7 +20,7 @@ const UseGetSearchJobs = () => {
         });
         const data = await res.json();
         if (data.success) {
-          dispatch(setSearchQuery(null));
+          dispatch(setSearchQuery(""));
           dispatch(setSearchJobs(data.jobs));
         } else {
           toast(data.message);

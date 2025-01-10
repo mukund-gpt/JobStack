@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const LatestJobCards = ({ job }) => {
+  const navigate = useNavigate();
   return (
-    <div className="bg-[#fefcff] border border-pink-200 rounded-lg p-5 shadow-lg shadow-orange-200">
+    <div
+      className="bg-[#fefcff] border border-pink-200 rounded-lg p-5 shadow-lg shadow-orange-200 cursor-pointer"
+      onClick={() => navigate(`/jobs/details/${job?._id}`)}
+    >
       <div>
         <h1 className="text-purple-500 font-bold text-xl">
           {job?.company?.companyName}
