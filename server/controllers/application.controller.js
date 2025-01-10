@@ -81,7 +81,9 @@ export const getApplicants = async (req, res) => {
       return res.status(404).json({ message: "Job not found", success: false });
     }
 
-    return res.status(200).json({ success: true, job: job.applications });
+    return res
+      .status(200)
+      .json({ success: true, applications: job.applications });
   } catch (error) {
     console.log(error);
     return res

@@ -13,6 +13,7 @@ import CreateCompanies from "./components/admin/CreateCompanies";
 import EditCompany from "./components/admin/EditCompany";
 import AdminJobs from "./components/admin/AdminJobs";
 import CreateJob from "./components/admin/CreateJob";
+import Applications from "./components/admin/Applications";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
@@ -52,6 +53,10 @@ const App = () => {
           <Route path="/admin/companies/edit/:id" element={<EditCompany />} />
           <Route path="/admin/jobs" element={<AdminJobs />} />
           <Route path="/admin/jobs/create" element={<CreateJob />} />
+          <Route
+            path="/admin/jobs/:id/applications"
+            element={<Applications />}
+          />
         </>
 
         <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />

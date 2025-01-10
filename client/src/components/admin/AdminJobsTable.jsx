@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "../ui/table";
 import { useDispatch, useSelector } from "react-redux";
-import { PencilLine } from "lucide-react";
+import { PencilLine, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const AdminJobsTable = ({ searchInput }) => {
@@ -64,7 +64,13 @@ const AdminJobsTable = ({ searchInput }) => {
                 <TableCell>{job?.title}</TableCell>
                 <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
                 <TableCell className="text-right flex justify-end items-center">
-                  <PencilLine className="text-gray-500 cursor-pointer" />
+                  <PencilLine className="text-gray-500 cursor-pointer mx-2" />
+                  <Users
+                    className="text-gray-500 cursor-pointer"
+                    onClick={() =>
+                      navigate(`/admin/jobs/${job?._id}/applications`)
+                    }
+                  />
                 </TableCell>
               </TableRow>
             ))}
