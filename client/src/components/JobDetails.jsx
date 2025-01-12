@@ -16,6 +16,7 @@ const JobDetails = () => {
   const { id } = useParams();
 
   const [isApplied, setIsApplied] = useState(false);
+  const [isApplying, setIsApplying] = useState(false);
   const [loading, setLoading] = useState(false);
   // console.log(isApplied);
 
@@ -52,7 +53,12 @@ const JobDetails = () => {
   }, [singleJob, user]);
 
   const applyJobHandler = async () => {
+    if (!user?.profile?.resume) {
+      toast.error("Plz upload resume..🤦‍♂️");
+      return;
+    }
     try {
+      setIsApplying(true);
       const res = await fetch(`${baseUrl}/api/application/apply/${id}`, {
         method: "GET",
         credentials: "include",
@@ -79,6 +85,8 @@ const JobDetails = () => {
     } catch (error) {
       toast.error(error.message);
       console.log(error);
+    } finally {
+      setIsApplying(false);
     }
   };
 
@@ -145,7 +153,7 @@ const JobDetails = () => {
 
               <div className="flex gap-4 m-1 p-1">
                 <h1 className="font-bold">Salary:</h1>
-                <p className="text-gray-800">{singleJob?.salary} lpa</p>
+                <p className="text-gray-800">{singleJob?.salary} INR</p>
               </div>
 
               <div className="flex gap-4 m-1 p-1">
@@ -169,10 +177,14 @@ const JobDetails = () => {
                 </button>
               ) : (
                 <button
-                  className="btn btn-primary border-none bg-blue-500 hover:bg-blue-600 text-white text-[1.3rem]"
-                  onClick={applyJobHandler}
+                  className={`btn btn-primary border-none ${
+                    isApplying
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-500 hover:bg-blue-600"
+                  } text-white text-[1.3rem]`}
+                  onClick={isApplying ? null : applyJobHandler}
                 >
-                  Apply Now
+                  {isApplying ? "Loading..." : "Apply Now"}
                 </button>
               )}
             </div>

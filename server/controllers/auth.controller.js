@@ -9,7 +9,7 @@ export const register = async (req, res) => {
     const { fullname, email, phone, password, role } = req.body;
     const image = req.file;
 
-    if (!fullname || !email || !phone || !password || !role || !image) {
+    if (!fullname || !email || !phone || !password || !role) {
       return res.json({ message: "Fill all details", success: false });
     }
 

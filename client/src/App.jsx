@@ -46,18 +46,23 @@ const App = () => {
         )}
 
         {/* Admin Routes */}
-        <>
-          <Route path="/" element={<Companies />} />
-          <Route path="/admin/companies" element={<Companies />} />
-          <Route path="/admin/companies/create" element={<CreateCompanies />} />
-          <Route path="/admin/companies/edit/:id" element={<EditCompany />} />
-          <Route path="/admin/jobs" element={<AdminJobs />} />
-          <Route path="/admin/jobs/create" element={<CreateJob />} />
-          <Route
-            path="/admin/jobs/:id/applications"
-            element={<Applications />}
-          />
-        </>
+        {user?.role === "recruiter" && (
+          <>
+            <Route path="/" element={<Companies />} />
+            <Route path="/admin/companies" element={<Companies />} />
+            <Route
+              path="/admin/companies/create"
+              element={<CreateCompanies />}
+            />
+            <Route path="/admin/companies/edit/:id" element={<EditCompany />} />
+            <Route path="/admin/jobs" element={<AdminJobs />} />
+            <Route path="/admin/jobs/create" element={<CreateJob />} />
+            <Route
+              path="/admin/jobs/:id/applications"
+              element={<Applications />}
+            />
+          </>
+        )}
 
         <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
       </Routes>

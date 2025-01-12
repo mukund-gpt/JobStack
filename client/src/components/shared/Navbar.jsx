@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { baseUrl } from "@/utils/baseUrl";
 import { setUser } from "@/redux/authSlice";
+import { setAdminJobs, setSearchJobs, setSearchQuery } from "@/redux/jobSlice";
+import { setAllCompanies, setSingleCompany } from "@/redux/companySlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,11 @@ const Navbar = () => {
       toast.success(data.message);
       if (data.success) {
         dispatch(setUser(null));
+        dispatch(setAdminJobs([]));
+        dispatch(setSearchJobs([]));
+        dispatch(setSearchQuery(""));
+        dispatch(setAllCompanies([]));
+        dispatch(setSingleCompany(null));
       }
     } catch (error) {
       toast.error(error.message);

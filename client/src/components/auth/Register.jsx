@@ -48,15 +48,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     formData.role = selectRole;
-    formData.image = image;
+    if (image) formData.image = image;
 
     if (
       !formData.fullname ||
       !formData.email ||
       !formData.phone ||
       !formData.password ||
-      !formData.role ||
-      !formData.image
+      !formData.role
     ) {
       toast.error("Please fill in all fields");
       return;
@@ -192,21 +191,23 @@ const Register = () => {
               </div>
 
               {/* Image Upload */}
-              <div className="flex items-center justify-between p-2 bg-white rounded shadow-md w-full space-x-4">
-                <label
-                  htmlFor="fileInput"
-                  className="text-sm w-1/3 font-medium text-gray-700"
-                >
-                  Upload Profile:
-                </label>
-                <input
-                  id="fileInput"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="text-sm w-2/3 text-gray-600 file:mr-1 file:py-2 file:px-2 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                />
-              </div>
+              {selectRole === "student" && (
+                <div className="flex items-center justify-between p-2 bg-white rounded shadow-md w-full space-x-4">
+                  <label
+                    htmlFor="fileInput"
+                    className="text-sm w-1/3 font-medium text-gray-700"
+                  >
+                    Upload Profile:
+                  </label>
+                  <input
+                    id="fileInput"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="text-sm w-2/3 text-gray-600 file:mr-1 file:py-2 file:px-2 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                  />
+                </div>
+              )}
 
               <button
                 className="text-white py-2 rounded-xl hover:scale-105 duration-300 bg-green-600 hover:bg-green-700 font-medium"
