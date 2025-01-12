@@ -7,7 +7,18 @@ import { useSelector } from "react-redux";
 
 const Browse = () => {
   const { searchJobs } = useSelector((store) => store.job);
-  UseGetSearchJobs();
+  const { loading } = UseGetSearchJobs();
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <div className="loading loading-bars text-4xl">
+          loading loading-bars
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
       <Navbar />
