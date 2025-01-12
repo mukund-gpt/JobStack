@@ -29,7 +29,7 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="navbar bg-orange-500 text-white min-w-[400px]">
+      <div className="navbar bg-orange-500 text-white min-w-[350px]">
         <div className="flex-1">
           <Link to="/" className="text-2xl sm:text-3xl font-bold mx-1 sm:ml-4">
             <span>Job</span>
@@ -61,12 +61,6 @@ const Navbar = () => {
                     className="hover:text-blue-500 transition-colors duration-300"
                   >
                     Jobs
-                  </Link>
-                  <Link
-                    to="/browse"
-                    className="hover:text-blue-500 transition-colors duration-300"
-                  >
-                    Browse
                   </Link>
                 </>
               )}

@@ -9,7 +9,7 @@ import React from "react";
 const Home = () => {
   useGetAllJobs();
   return (
-    <div className="h-screen flex flex-col min-w-[400px] overflow-y-auto scrollbar-hide">
+    <div className="h-screen flex flex-col min-w-[350px] overflow-y-auto scrollbar-hide">
       <Navbar />
       <HeroSection />
       <CategoryCarousel />

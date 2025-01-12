@@ -13,8 +13,8 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-full h-full">
-        <div className="w-[90vw] sm:w-[80vw] mx-auto shadow-md shadow-amber-400 rounded-md">
+      <div className="w-full h-full min-w-[350px]">
+        <div className="w-[90vw] min-w-[350px] sm:w-[80vw] mx-auto shadow-md shadow-amber-400 rounded-md">
           <div>
             <h1 className="text-4xl font-bold text-violet-500 text-center m-4">
               Profile

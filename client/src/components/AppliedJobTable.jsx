@@ -24,7 +24,7 @@ const AppliedJobTable = () => {
 
   return (
     <div>
-      <div className="w-[90vw] sm:w-[80vw] mx-auto my-5 shadow-md rounded-md shadow-amber-300">
+      <div className="w-[90vw] sm:w-[80vw] min-w-[350px] mx-auto my-5 shadow-md rounded-md shadow-amber-300">
         <div className="m-2 p-2 ">
           <Table>
             <TableCaption className="text-2xl font-bold text-violet-500 m-2 caption-top">

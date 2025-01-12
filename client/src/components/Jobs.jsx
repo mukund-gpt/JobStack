@@ -19,18 +19,18 @@ const Jobs = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <div className="w-[95vw] mx-auto flex gap-2 mt-4">
-        <div className="w-1/5 rounded-md shadow-md">
+      <div className="w-full min-w-[350px] mx-auto flex gap-1 sm:gap-2 mt-4">
+        <div className="w-2/6 sm:w-1/5 flex-shrink-0 rounded-md shadow-md">
           <FilterCard />
         </div>
-        <div className="h-[80vh] w-4/5 flex flex-col">
+        <div className="flex-grow h-[80vh] flex sm:w-4/5 flex-col">
           <div className="flex-1 overflow-y-auto scrollbar-hide">
             {filteredJobs?.length == 0 ? (
               <div className="w-full h-full flex justify-center items-center text-2xl">
                 No jobs found
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-2 p-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 sm:m-2 sm:p-2">
                 {filteredJobs?.map((job) => (
                   <Job key={job?._id} job={job} />
                 ))}

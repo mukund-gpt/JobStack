@@ -96,7 +96,7 @@ const JobDetails = () => {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <div className="flex-grow">
-          <div className="mx-auto w-[90vw] min-w-[400px] sm:w-[80vw] m-3 mt-5 p-4 shadow-lg rounded-md shadow-lime-600">
+          <div className="mx-auto w-[90vw] min-w-[350px] sm:w-[80vw] m-3 mt-5 p-4 shadow-lg rounded-md shadow-lime-600">
             <div className="flex flex-wrap justify-between items-center">
               <h1 className="text-2xl w-full sm:w-1/2 mb-2 sm:mb-0 text-center font-bold text-indigo-500">
                 {singleJob?.title}

@@ -64,10 +64,8 @@ const FilterCard = () => {
 
   return (
     <div>
+      <h1 className="text-center text-purple-500 text-xl font-bold">Filter</h1>
       <div className="w-full h-[80vh] overflow-y-auto scrollbar-hide">
-        <h1 className="text-center text-purple-500 text-xl font-bold">
-          Filter
-        </h1>
         <div className="p-1">
           <RadioGroup
             value={selectedValue}
@@ -75,15 +73,18 @@ const FilterCard = () => {
           >
             {filterdata.map((data, index) => (
               <div key={index}>
-                <h1 className="text-xl font-semibold text-amber-600 m-1 p-1">
+                <h1 className="text-xl font-semibold text-amber-600 m-1 p-1 md:pl-3">
                   {data.filterType}
                 </h1>
                 {data.array.map((item, index) => (
-                  <div className="flex gap-1 items-center pl-3" key={index}>
+                  <div
+                    className="flex gap-1 items-center pl-2 sm:pl-3 md:pl-5"
+                    key={index}
+                  >
                     <RadioGroupItem
                       value={item}
                       id={item}
-                      className="h-4 w-4 rounded-full border-2 bg-white data-[state=checked]:border-white"
+                      className="h-3 sm:h-4 w-3 sm:w-4 rounded-full border-2 bg-white data-[state=checked]:border-white"
                     />
                     <label
                       htmlFor={item}

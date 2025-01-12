@@ -33,7 +33,7 @@ const CategoryCarousel = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full px-5">
       <Carousel
         opts={{
           align: "start",
