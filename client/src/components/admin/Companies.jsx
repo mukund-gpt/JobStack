@@ -13,18 +13,21 @@ const Companies = () => {
   return (
     <>
       <Navbar />
-      <div className="flex m-4 p-2 justify-between w-full sm:w-3/4 mx-auto">
-        <Input
-          className="w-fit border-purple-300 font-bold shadow-md shadow-purple-200"
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <Button
-          className=""
-          onClick={() => navigate("/admin/companies/create")}
-        >
-          New Company
-        </Button>
+      <div className="w-full">
+        <div className="flex gap-2 min-w-[350px] p-2 justify-between sm:w-3/4 m-2 sm:mx-auto my-4">
+          <Input
+            className="sm:w-fit max-w-fit border-purple-300 font-bold shadow-md shadow-purple-200"
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <Button
+            className=""
+            onClick={() => navigate("/admin/companies/create")}
+          >
+            New Company
+          </Button>
+        </div>
       </div>
+
       <CompaniesTable searchInput={searchInput} />
     </>
   );

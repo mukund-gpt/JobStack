@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <div className="flex-none gap-3 sm:gap-10 font-semibold">
           {
-            <div className="flex gap-3 sm:gap-6 text-xl sm:text-2xl font-medium text-white">
+            <div className="flex gap-2 sm:gap-6 text-xl sm:text-2xl font-medium text-white">
               {user?.role === "recruiter" ? (
                 <>
                   <Link
@@ -84,24 +84,14 @@ const Navbar = () => {
             )}
           </div>
 
-          {user && (
-            <>
-              {user.role !== "recruiter" ? (
-                <Link to="/profile">
-                  <div className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                      <img src={user?.profile?.profilePic} alt="Profile" />
-                    </div>
-                  </div>
-                </Link>
-              ) : (
-                <div className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img src={user?.profile?.profilePic} alt="Profile" />
-                  </div>
+          {user?.role === "student" && (
+            <Link to="/profile">
+              <div className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.profile?.profilePic} alt="Profile" />
                 </div>
-              )}
-            </>
+              </div>
+            </Link>
           )}
         </div>
       </div>

@@ -36,7 +36,7 @@ const AdminJobsTable = ({ searchInput }) => {
 
   return (
     <>
-      <div className="w-full sm:w-3/4 mx-auto p-2 m-2">
+      <div className="w-full min-w-[350px] sm:w-3/4 mx-auto p-2 m-2">
         <Table>
           <TableCaption className="caption-top">
             List of your created jobs
@@ -64,7 +64,7 @@ const AdminJobsTable = ({ searchInput }) => {
                 <TableCell>{job?.title}</TableCell>
                 <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
                 <TableCell className="text-right flex justify-end items-center">
-                  <PencilLine className="text-gray-500 cursor-pointer mx-2" />
+                  {/* <PencilLine className="text-gray-500 cursor-pointer mx-2" /> */}
                   <Users
                     className="text-gray-500 cursor-pointer"
                     onClick={() =>

@@ -37,7 +37,7 @@ const CompaniesTable = ({ searchInput }) => {
   };
   return (
     <>
-      <div className="w-full sm:w-3/4 mx-auto p-2 m-2">
+      <div className="w-full min-w-[350px] sm:w-3/4 mx-auto p-2 m-2">
         <Table>
           <TableCaption className="caption-top">
             List of your registered companies
