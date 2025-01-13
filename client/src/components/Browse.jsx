@@ -4,6 +4,7 @@ import Job from "./Job";
 import Footer from "./shared/Footer";
 import UseGetSearchJobs from "@/hooks/UseGetSearchJobs";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Browse = () => {
   const { searchJobs } = useSelector((store) => store.job);
@@ -34,9 +35,15 @@ const Browse = () => {
                 <p>No jobs found</p>
               ) : (
                 searchJobs?.map((job, index) => (
-                  <div key={index}>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 100, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <Job job={job} />
-                  </div>
+                  </motion.div>
                 ))
               )}
             </div>

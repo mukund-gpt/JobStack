@@ -4,6 +4,7 @@ import Navbar from "./shared/Navbar";
 import Footer from "./shared/Footer";
 import FilterCard from "./FilterCard";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Jobs = () => {
   const { allJobs, searchQuery } = useSelector((store) => store.job);
@@ -32,7 +33,15 @@ const Jobs = () => {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 sm:m-2 sm:p-2">
                 {filteredJobs?.map((job) => (
-                  <Job key={job?._id} job={job} />
+                  <motion.div
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 100, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.3 }}
+                    key={job?._id}
+                  >
+                    <Job job={job} />
+                  </motion.div>
                 ))}
               </div>
             )}
