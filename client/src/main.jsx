@@ -9,6 +9,9 @@ import store from "./redux/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import persistStore from "redux-persist/es/persistStore";
 
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 const persistor = persistStore(store);
 
 createRoot(document.getElementById("root")).render(
@@ -18,6 +21,8 @@ createRoot(document.getElementById("root")).render(
         <BrowserRouter>
           <Toaster position="top-right" />
           <App />
+          <Analytics />
+          <SpeedInsights />
         </BrowserRouter>
       </PersistGate>
     </Provider>
