@@ -8,6 +8,7 @@ const ResetPassword = () => {
   const { token } = useParams();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,6 +20,7 @@ const ResetPassword = () => {
     }
 
     try {
+      setLoading(true);
       const res = await fetch(`${baseUrl}/api/auth/verify-token`, {
         method: "POST",
         headers: {
@@ -37,6 +39,8 @@ const ResetPassword = () => {
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,8 +90,13 @@ const ResetPassword = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none"
+            disabled={loading}
           >
-            Reset Password
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              <> Reset Password</>
+            )}
           </button>
         </form>
       </div>

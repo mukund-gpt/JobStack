@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await fetch(`${baseUrl}/api/auth/reset-password`, {
         method: "POST",
         headers: {
@@ -20,7 +22,7 @@ const ForgetPassword = () => {
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
-      if (res.success) {
+      if (data.success) {
         toast.success(data.message);
       } else {
         toast.error(data.message);
@@ -28,6 +30,8 @@ const ForgetPassword = () => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,8 +65,13 @@ const ForgetPassword = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none"
+            disabled={loading}
           >
-            Send Reset Link
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              <> Send Reset Link</>
+            )}
           </button>
         </form>
       </div>
