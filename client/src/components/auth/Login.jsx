@@ -162,6 +162,12 @@ const Login = () => {
                 </button>
               </Link>
             </div>
+            <div
+              className="cursor-pointer text-sm text-[#002c74c5] font-bold"
+              onClick={() => navigate("/forget-password")}
+            >
+              Forget Password
+            </div>
           </div>
 
           <div className="hidden md:block">

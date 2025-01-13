@@ -14,6 +14,8 @@ import EditCompany from "./components/admin/EditCompany";
 import AdminJobs from "./components/admin/AdminJobs";
 import CreateJob from "./components/admin/CreateJob";
 import Applications from "./components/admin/Applications";
+import ForgetPassword from "./components/auth/ForgetPassword";
+import ResetPassword from "./components/auth/ResetPassword";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
@@ -29,6 +31,14 @@ const App = () => {
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/forget-password"
+          element={!user ? <ForgetPassword /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/reset-password/:token"
+          element={!user ? <ResetPassword /> : <Navigate to="/" />}
         />
 
         {/* Routes for Students Only */}
