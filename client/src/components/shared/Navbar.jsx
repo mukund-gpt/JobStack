@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { baseUrl } from "@/utils/baseUrl";
-import { setUser } from "@/redux/authSlice";
+import { setBookmarks, setUser } from "@/redux/authSlice";
 import { setAdminJobs, setSearchJobs, setSearchQuery } from "@/redux/jobSlice";
 import { setAllCompanies, setSingleCompany } from "@/redux/companySlice";
 
@@ -29,6 +29,7 @@ const Navbar = () => {
         dispatch(setSearchQuery(""));
         dispatch(setAllCompanies([]));
         dispatch(setSingleCompany(null));
+        dispatch(setBookmarks([]));
       }
     } catch (error) {
       toast.error(error.message);
@@ -74,6 +75,12 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <>
+                  <Link
+                    to="/jobs"
+                    className="hover:text-blue-500 transition-colors duration-300"
+                  >
+                    Jobs
+                  </Link>
                   <Link to="/login">
                     <Button variant="secondary">LogIn</Button>
                   </Link>
@@ -87,7 +94,10 @@ const Navbar = () => {
 
           {user?.role === "student" && (
             <div className="dropdown dropdown-end relative">
-              <div tabIndex={0} className="btn-circle m-1 p-0 avatar">
+              <div
+                tabIndex={0}
+                className="btn-circle m-1 p-0 avatar cursor-pointer"
+              >
                 <div className="w-12 h-12 rounded-full transition-all">
                   <img
                     src={user?.profile?.profilePic}
@@ -106,7 +116,10 @@ const Navbar = () => {
                 >
                   <a>Profile</a>
                 </li>
-                <li className="hover:bg-gray-100 transition-colors cursor-pointer">
+                <li
+                  className="hover:bg-gray-100 transition-colors cursor-pointer"
+                  onClick={() => navigate("/bookmarks")}
+                >
                   <a>Bookmarks</a>
                 </li>
                 <li

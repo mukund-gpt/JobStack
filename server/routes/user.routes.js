@@ -1,5 +1,5 @@
 import express from "express";
-import { updateProfile } from "../controllers/user.controller.js";
+import { bookmarkJob, updateProfile } from "../controllers/user.controller.js";
 import upload from "../middlewares/multer.js";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
 
@@ -11,5 +11,7 @@ router.patch(
   upload.single("resume"),
   updateProfile
 );
+
+router.patch("/bookmark/:jobId", isAuthenticated, bookmarkJob);
 
 export default router;

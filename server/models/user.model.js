@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema(
         ref: "Company",
       },
     },
+    bookmarks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job",
+      },
+    ],
   },
   { timestamps: true }
 );

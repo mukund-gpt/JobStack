@@ -16,6 +16,7 @@ import CreateJob from "./components/admin/CreateJob";
 import Applications from "./components/admin/Applications";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
+import BookMarks from "./components/BookMarks";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
@@ -51,6 +52,10 @@ const App = () => {
             <Route
               path="/profile"
               element={user ? <Profile /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/bookmarks"
+              element={user ? <BookMarks /> : <Navigate to="/" />}
             />
           </>
         )}

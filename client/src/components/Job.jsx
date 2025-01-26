@@ -1,13 +1,48 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { baseUrl } from "@/utils/baseUrl";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setBookmarks } from "@/redux/authSlice";
 
 const Job = ({ job }) => {
+  const { bookmarks } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+
   const daysAgoFunction = () => {
     const date = new Date(job?.createdAt);
     const timeDiff = Math.abs(new Date() - date);
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     return days;
+  };
+
+  const isBookmarked = (job) => {
+    return bookmarks.some((bookmark) => bookmark._id === job?._id);
+  };
+
+  const bookmarkHandler = async () => {
+    try {
+      const res = await fetch(`${baseUrl}/api/user/bookmark/${job?._id}`, {
+        method: "PATCH",
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.success) {
+        if (data.type === "saved") {
+          toast.success(data.message);
+        } else {
+          toast.success(data.message);
+        }
+        dispatch(setBookmarks(data.bookmarks));
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -49,8 +84,11 @@ const Job = ({ job }) => {
               Details
             </Button>
           </Link>
-          <Button className="bg-blue-400 hover:bg-blue-500 p-2 sm:px-3">
-            Save for Later
+          <Button
+            className="bg-blue-400 hover:bg-blue-500 p-2 sm:px-3"
+            onClick={bookmarkHandler}
+          >
+            {isBookmarked(job) ? <>Saved</> : <>Save for Later</>}
           </Button>
         </div>
       </div>
