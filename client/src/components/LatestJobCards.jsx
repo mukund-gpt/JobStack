@@ -12,8 +12,8 @@ const LatestJobCards = ({ job }) => {
     <motion.div
       ref={ref}
       key={job?._id}
-      initial={{ opacity: 0, x: 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+      initial={{ opacity: 0, y: 100 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
       transition={{ duration: 0.3 }}
     >
       <div

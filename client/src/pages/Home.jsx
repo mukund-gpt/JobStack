@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import LatestJobs from "@/components/LatestJobs";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
+import TopCompanies from "@/components/TopCompanies";
 import useGetAllJobs from "@/hooks/useGetAllJobs";
 import React from "react";
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <CategoryCarousel />
+      <TopCompanies />
       <LatestJobs />
       <div className="flex-grow"></div>
       <Footer />
