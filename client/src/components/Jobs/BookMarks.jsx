@@ -8,13 +8,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
+} from "../ui/table";
 import { useNavigate } from "react-router-dom";
 
 const BookMarks = () => {
   const navigate = useNavigate();
   const { bookmarks } = useSelector((store) => store.auth);
-  console.log(bookmarks);
+  // console.log(bookmarks);
+
   return (
     <div className="m-1 p-1 mt-5 sm:m-2 sm:p-2 md:m-4 md:p-4 shadow-md shadow-purple-600">
       <Table>
@@ -22,14 +23,18 @@ const BookMarks = () => {
           Bookmarks
         </TableCaption>
 
-        <TableHeader>
-          <TableRow>
-            <TableHead>Logo</TableHead>
-            <TableHead>Company Name</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Description</TableHead>
-          </TableRow>
-        </TableHeader>
+        {bookmarks?.length === 0 ? (
+          <div className="text-center text-lg m-10">No bookmarks available</div>
+        ) : (
+          <TableHeader>
+            <TableRow>
+              <TableHead>Logo</TableHead>
+              <TableHead>Company Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Description</TableHead>
+            </TableRow>
+          </TableHeader>
+        )}
 
         <TableBody>
           {bookmarks?.map((job) => (

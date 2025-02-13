@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import zigzagsvg from "../assets/zigzag.svg";
+import zigzagsvg from "../../assets/zigzag.svg";
+
 const TopCompanies = () => {
   const [svgs, setSvgs] = useState([]);
 
   useEffect(() => {
     const importSvgs = async () => {
-      const svgFiles = import.meta.glob("../assets/TopCompanies/*.svg");
+      const svgFiles = import.meta.glob("../../assets/TopCompanies/*.svg");
       console.log(svgFiles);
 
       const svgArray = await Promise.all(

@@ -11,7 +11,7 @@ const LatestJobs = () => {
         <div className="text-center text-lg m-10">No jobs available</div>
       ) : (
         <>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold sm:w-1/2 text-center text-green-500 mx-auto whitespace-nowrap">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold sm:w-1/2 text-center text-purple-500 mx-auto whitespace-nowrap">
             Latest Job Openings
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-5 gap-5">

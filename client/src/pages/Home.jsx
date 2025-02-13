@@ -1,9 +1,9 @@
-import CategoryCarousel from "@/components/CategoryCarousel";
-import HeroSection from "@/components/HeroSection";
-import LatestJobs from "@/components/LatestJobs";
+import CategoryCarousel from "@/components/Home/CategoryCarousel";
+import HeroSection from "@/components/Home/HeroSection";
+import LatestJobs from "@/components/Home/LatestJobs";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
-import TopCompanies from "@/components/TopCompanies";
+import TopCompanies from "@/components/Home/TopCompanies";
 import useGetAllJobs from "@/hooks/useGetAllJobs";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Job from "./Job";
-import Navbar from "./shared/Navbar";
-import Footer from "./shared/Footer";
+import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
 import FilterCard from "./FilterCard";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";

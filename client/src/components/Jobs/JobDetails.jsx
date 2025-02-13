@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./shared/Navbar";
-import Footer from "./shared/Footer";
+import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
 import { baseUrl } from "@/utils/baseUrl";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +18,6 @@ const JobDetails = () => {
   const [isApplied, setIsApplied] = useState(false);
   const [isApplying, setIsApplying] = useState(false);
   const [loading, setLoading] = useState(false);
-  // console.log(isApplied);
 
   useEffect(() => {
     const fetchSingleJob = async () => {
@@ -31,7 +30,6 @@ const JobDetails = () => {
         const data = await res.json();
         if (data.success) {
           dispatch(setSingleJob(data.job));
-          // console.log(data.job);
         } else {
           toast(data.message);
         }
@@ -98,6 +96,7 @@ const JobDetails = () => {
       </div>
     );
   }
+  console.log(singleJob);
 
   return (
     <div>
@@ -105,22 +104,30 @@ const JobDetails = () => {
         <Navbar />
         <div className="flex-grow">
           <div className="mx-auto w-[90vw] min-w-[350px] sm:w-[80vw] m-3 mt-5 p-4 shadow-lg rounded-md shadow-lime-600">
-            <div className="flex flex-wrap justify-between items-center">
-              <h1 className="text-2xl w-full sm:w-1/2 mb-2 sm:mb-0 text-center font-bold text-indigo-500">
-                {singleJob?.title}
-              </h1>
-            </div>
-
-            <div className="w-full sm:w-1/2 flex flex-wrap gap-2 justify-center m-2 sm:m-3 items-center">
-              <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
-                {singleJob?.position} Openings
-              </span>
-              <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
-                {singleJob?.jobType}
-              </span>
-              <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
-                {singleJob?.salary}
-              </span>
+            <div className="flex flex-wrap justify-between items-center sm:px-10">
+              <div className="w-full sm:w-3/4 p-2">
+                <h1 className="text-3xl text-center sm:text-left font-bold text-indigo-500">
+                  {singleJob?.title}
+                </h1>
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start py-3 items-center">
+                  <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
+                    {singleJob?.position} Openings
+                  </span>
+                  <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
+                    {singleJob?.jobType}
+                  </span>
+                  <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
+                    {singleJob?.salary} LPA
+                  </span>
+                </div>
+              </div>
+              <div className="w-full sm:w-auto p-2 flex justify-center sm:justify-end">
+                <img
+                  src={singleJob?.company?.logo}
+                  alt="Job"
+                  className="w-20 h-20 object-cover"
+                />
+              </div>
             </div>
 
             <h2 className="text-gray-500 font-bold ml-5 mt-5 p-2">
@@ -153,13 +160,35 @@ const JobDetails = () => {
 
               <div className="flex gap-4 m-1 p-1">
                 <h1 className="font-bold">Salary:</h1>
-                <p className="text-gray-800">{singleJob?.salary} INR</p>
+                <p className="text-gray-800">{singleJob?.salary} LPA</p>
               </div>
 
               <div className="flex gap-4 m-1 p-1">
                 <h1 className="font-bold">Total applicants:</h1>
                 <p className="text-gray-800">
                   {singleJob?.applications.length}
+                </p>
+              </div>
+
+              <div className="flex gap-4 m-1 p-1">
+                <h1 className="font-bold">Website</h1>
+                <p
+                  className="text-gray-800 cursor-pointer hover:underline hover:text-blue-600"
+                  onClick={() => {
+                    let website = singleJob?.company?.website;
+                    if (website && !website.startsWith("http")) {
+                      website = `https://${website}`;
+                    }
+
+                    if (
+                      website.startsWith("http://") ||
+                      website.startsWith("https://")
+                    ) {
+                      window.open(website, "_blank");
+                    }
+                  }}
+                >
+                  {singleJob?.company?.website}
                 </p>
               </div>
 

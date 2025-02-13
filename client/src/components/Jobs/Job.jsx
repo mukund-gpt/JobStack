@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { baseUrl } from "@/utils/baseUrl";
 import toast from "react-hot-toast";

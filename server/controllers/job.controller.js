@@ -91,7 +91,7 @@ export const getJobById = async (req, res) => {
     }
 
     const job = await Job.findById(id).populate({
-      path: "applications",
+      path: "applications company",
     });
 
     if (!job) {

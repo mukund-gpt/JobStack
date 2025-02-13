@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
+} from "../ui/table";
 import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
 const AppliedJobTable = () => {

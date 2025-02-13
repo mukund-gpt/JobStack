@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Navbar from "./shared/Navbar";
+import Navbar from "../shared/Navbar";
 import { Contact, Mail, UserRoundPen } from "lucide-react";
-import Footer from "./shared/Footer";
+import Footer from "../shared/Footer";
 import AppliedJobTable from "./AppliedJobTable";
 import EditProfileDialog from "./EditProfileDialog";
 

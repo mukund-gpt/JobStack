@@ -1,2 +1,1 @@
-// export const baseUrl = "http://localhost:8000";
-export const baseUrl = "https://jobstack-backend.onrender.com";
+export const baseUrl = import.meta.env.VITE_API_URL;

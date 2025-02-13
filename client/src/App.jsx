@@ -3,10 +3,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Home from "./pages/Home";
-import Jobs from "./components/Jobs";
-import Browse from "./components/Browse";
-import Profile from "./components/Profile";
-import JobDetails from "./components/JobDetails";
+import Jobs from "./components/Jobs/Jobs";
+import Browse from "./components/Jobs/Browse";
+import Profile from "./components/Profile/Profile";
+import JobDetails from "./components/Jobs/JobDetails";
 import { useSelector } from "react-redux";
 import Companies from "./components/admin/Companies";
 import CreateCompanies from "./components/admin/CreateCompanies";
@@ -16,7 +16,7 @@ import CreateJob from "./components/admin/CreateJob";
 import Applications from "./components/admin/Applications";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import BookMarks from "./components/BookMarks";
+import BookMarks from "./components/Jobs/BookMarks";
 
 const App = () => {
   const { user } = useSelector((store) => store.auth);
