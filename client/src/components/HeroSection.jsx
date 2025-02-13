@@ -21,7 +21,7 @@ const HeroSection = () => {
       <div className="w-full text-center mt-2 sm:mt-5">
         <h1 className="flex flex-col justify-center items-center font-bold">
           <span className="m-2 text-5xl text-green-500">Jobstack</span>
-          <p className="m-1 p-1 text-xl sm:text-3xl text-red-500 animate-typewriter overflow-hidden whitespace-nowrap">
+          <p className="m-1 p-1 text-xl sm:text-3xl text-green-500 animate-typewriter overflow-hidden whitespace-nowrap">
             Career Opportunities at Your Fingertips
           </p>
         </h1>

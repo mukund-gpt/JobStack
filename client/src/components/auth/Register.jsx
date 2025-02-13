@@ -222,10 +222,7 @@ const Register = () => {
               </button>
             </form>
 
-            <div className="mt-1 text-sm flex justify-between items-center container-mr">
-              <p className="mr-3 md:mr-0 text-black">
-                If you already a member, log in now.
-              </p>
+            <div className="m-2 text-sm flex justify-center items-center container-mr">
               <Link to="/login">
                 <button className="hover:border register text-white bg-[#002c74c5] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002D74] font-semibold duration-300">
                   Login

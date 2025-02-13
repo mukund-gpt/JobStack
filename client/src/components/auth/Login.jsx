@@ -154,19 +154,19 @@ const Login = () => {
               </button>
             </form>
 
-            <div className="mt-1 text-sm flex justify-between items-center container-mr">
-              <p className="mr-3 md:mr-0 text-black">Not a member,</p>
+            <div className="m-2 text-sm flex flex-col justify-center items-center container-mr">
               <Link to="/register">
-                <button className="hover:border text-white bg-[#002c74c5] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002D74] font-semibold duration-300">
-                  Register here
+                <button className="p-1 hover:border text-white bg-[#002c74c5] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002D74] font-semibold duration-300">
+                  Register
                 </button>
               </Link>
-            </div>
-            <div
-              className="cursor-pointer text-sm text-[#002c74c5] font-bold"
-              onClick={() => navigate("/forget-password")}
-            >
-              Forget Password
+
+              <div
+                className="p-2 cursor-pointer text-sm text-[#002c74c5] font-bold hover:underline"
+                onClick={() => navigate("/forget-password")}
+              >
+                Forget Password
+              </div>
             </div>
           </div>
 

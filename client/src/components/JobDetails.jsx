@@ -115,10 +115,10 @@ const JobDetails = () => {
               <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
                 {singleJob?.position} Openings
               </span>
-              <span className="badge p-2 text-sm font-bold text-red-400 bg-white border border-gray-300">
+              <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
                 {singleJob?.jobType}
               </span>
-              <span className="badge p-2 text-sm font-bold text-green-400 bg-white border border-gray-300">
+              <span className="badge p-2 text-sm font-bold text-amber-600 bg-white border border-gray-300">
                 {singleJob?.salary}
               </span>
             </div>
