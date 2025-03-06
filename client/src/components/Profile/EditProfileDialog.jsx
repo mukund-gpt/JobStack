@@ -24,12 +24,14 @@ const EditProfileDialog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
 
   const [input, setInput] = useState({
+    profile: "",
+    profilePreview: user?.profile?.profilePic || "",
     fullname: user?.fullname || "",
     email: user?.email || "",
     phone: user?.phone || "",
     bio: user?.profile?.bio || "",
     skills: user?.profile?.skills.join(",") || "",
-    resume: user?.profile?.resume || "",
+    resume: "",
   });
 
   const changeEventHandler = (e) => {
@@ -47,9 +49,46 @@ const EditProfileDialog = ({ open, setOpen }) => {
   };
 
   const fileChangeHandler = (e) => {
-    const file = e.target.files[0];
-    setInput({ ...input, resume: file });
+    const { name, files: selectedFiles } = e.target;
+    if (!selectedFiles.length) return;
+    const selectedFile = selectedFiles[0];
+
+    // File validation
+    if (name === "profile") {
+      const validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+      if (!validImageTypes.includes(selectedFile.type)) {
+        toast.error("Invalid format! Use JPG, JPEG, or PNG.");
+        return;
+      }
+      if (selectedFile.size > 1 * 1024 * 1024) {
+        toast.error("Profile picture must be under 1MB.");
+        return;
+      }
+
+      setInput((prev) => ({
+        ...prev,
+        profile: selectedFile,
+        profilePreview: URL.createObjectURL(selectedFile),
+      }));
+    }
+
+    if (name === "resume") {
+      if (selectedFile.type !== "application/pdf") {
+        toast.error("Invalid resume format! Only PDFs are allowed.");
+        return;
+      }
+      if (selectedFile.size > 2 * 1024 * 1024) {
+        toast.error("Resume file must be under 2MB.");
+        return;
+      }
+
+      setInput((prev) => ({
+        ...prev,
+        resume: selectedFile,
+      }));
+    }
   };
+
   const handleSubmit = async () => {
     console.log(input);
     const formData = new FormData();
@@ -58,6 +97,7 @@ const EditProfileDialog = ({ open, setOpen }) => {
     formData.append("phone", input.phone);
     formData.append("bio", input.bio);
     formData.append("skills", input.skills);
+    if (input.profile) formData.append("profile", input.profile);
     if (input.resume) formData.append("resume", input.resume);
     console.log(input);
     console.log([...formData]);
@@ -104,6 +144,30 @@ const EditProfileDialog = ({ open, setOpen }) => {
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
+            {input.profilePreview && (
+              <div className="flex justify-center">
+                <img
+                  src={input.profilePreview}
+                  alt="Profile Preview"
+                  className="w-24 h-24 rounded-full object-cover border"
+                />
+              </div>
+            )}
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="profile" className="text-right">
+                Profile
+              </Label>
+              <Input
+                id="profile"
+                name="profile"
+                type="file"
+                accept="image/jpg, image/jpeg, image/png"
+                onChange={fileChangeHandler}
+                className="col-span-3"
+              />
+            </div>
+
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="fullname" className="text-right">
                 Full name

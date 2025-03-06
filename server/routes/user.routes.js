@@ -8,7 +8,10 @@ const router = express.Router();
 router.patch(
   "/profile",
   isAuthenticated,
-  upload.single("resume"),
+  upload.fields([
+    { name: "profile", maxCount: 1 },
+    { name: "resume", maxCount: 1 },
+  ]),
   updateProfile
 );
 
