@@ -5,6 +5,7 @@ import Footer from "../shared/Footer";
 import FilterCard from "./FilterCard";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import useGetAllBookmarks from "@/hooks/useGetAllBookmarks";
 
 const Jobs = () => {
   const { allJobs, searchQuery } = useSelector((store) => store.job);
@@ -17,6 +18,7 @@ const Jobs = () => {
       job?.jobType?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
 
+  useGetAllBookmarks();
   return (
     <div className="w-full">
       <Navbar />

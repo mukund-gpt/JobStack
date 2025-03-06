@@ -49,6 +49,25 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+export const getAllBookmarks = async (req, res) => {
+  try {
+    const user = await User.findById(req.id).populate({
+      path: "bookmarks",
+      populate: { path: "company", select: "companyName logo" },
+      select: "title description",
+    });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found", success: false });
+    }
+    return res.json({ success: true, bookmarks: user.bookmarks });
+  } catch (error) {
+    console.error(error);
+    return res.json({ message: error.message, success: false });
+  }
+};
+
 export const bookmarkJob = async (req, res) => {
   try {
     const { jobId } = req.params;
