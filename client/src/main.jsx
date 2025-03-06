@@ -11,20 +11,24 @@ import persistStore from "redux-persist/es/persistStore";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const persistor = persistStore(store);
+const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <Toaster position="top-right" />
-          <App />
-          <Analytics />
-          <SpeedInsights />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <Toaster position="top-right" />
+            <App />
+            <Analytics />
+            <SpeedInsights />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </GoogleOAuthProvider>
   </StrictMode>
 );

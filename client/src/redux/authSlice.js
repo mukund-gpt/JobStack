@@ -5,6 +5,7 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     bookmarks: [],
+    role: "",
   },
   reducers: {
     //actions
@@ -14,8 +15,11 @@ const authSlice = createSlice({
     setBookmarks: (state, action) => {
       state.bookmarks = action.payload;
     },
+    setRole: (state, action) => {
+      state.role = action.payload;
+    },
   },
 });
 
-export const { setUser, setBookmarks } = authSlice.actions;
+export const { setUser, setBookmarks, setRole } = authSlice.actions;
 export default authSlice.reducer;

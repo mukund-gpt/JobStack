@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 import nodemailer from "nodemailer";
+import { OAuth2Client } from "google-auth-library";
 
 export const register = async (req, res) => {
   try {
@@ -183,5 +184,46 @@ export const verifyToken = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message, success: false });
+  }
+};
+
+export const googleAuth = async (req, res) => {
+  const { google_token, role } = req.body;
+  const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: google_token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { name, email, picture } = payload;
+    // console.log("User verified:", payload);
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        fullname: name,
+        email,
+        role,
+        profile: {
+          profilePic: picture,
+        },
+      });
+    }
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
+
+    return res
+      .cookie("token", token, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+        maxAge: 1 * 24 * 60 * 60 * 1000,
+      })
+      .json({ message: `Welcome ${user.fullname}`, success: true, user });
+  } catch (error) {
+    console.error("Google Auth Error:", error);
+    res.status(400).json({ message: "Google Auth Error" });
   }
 };

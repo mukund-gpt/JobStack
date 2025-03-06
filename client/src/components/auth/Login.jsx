@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoEyeClosed } from "react-icons/go";
 import { RxEyeOpen } from "react-icons/rx";
@@ -6,7 +6,8 @@ import { baseUrl } from "@/utils/baseUrl";
 import jobImage from "../../assets/job.jpg";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/authSlice";
+import { setRole, setUser } from "@/redux/authSlice";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 const Login = () => {
   const [selectRole, setSelectRole] = useState("");
@@ -24,6 +25,10 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    dispatch(setRole(selectRole));
+  }, [selectRole]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -153,6 +158,7 @@ const Login = () => {
                 )}
               </button>
             </form>
+            <GoogleLoginButton />
 
             <div className="m-2 text-sm flex flex-col justify-center items-center container-mr">
               <Link to="/register">

@@ -7,7 +7,7 @@ const TopCompanies = () => {
   useEffect(() => {
     const importSvgs = async () => {
       const svgFiles = import.meta.glob("../../assets/TopCompanies/*.svg");
-      console.log(svgFiles);
+      // console.log(svgFiles);
 
       const svgArray = await Promise.all(
         Object.entries(svgFiles).map(async ([path, importer]) => ({

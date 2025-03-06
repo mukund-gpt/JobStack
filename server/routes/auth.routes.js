@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  googleAuth,
   login,
   logout,
   register,
@@ -16,5 +17,7 @@ router.get("/logout", logout);
 
 router.post("/reset-password", resetPassword);
 router.post("/verify-token", verifyToken);
+
+router.post("/google-auth", googleAuth);
 
 export default router;
