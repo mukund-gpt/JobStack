@@ -1,9 +1,10 @@
-#  (2025-01-26)
+#  (2025-05-03)
 
 
 ### Bug Fixes
 
 * added vercel.json ([c396f95](https://github.com/mukund-gpt/JobStack/commit/c396f954292911893cdf980576fda8400cbf80bd))
+* bookmarks fetch update ([a299a72](https://github.com/mukund-gpt/JobStack/commit/a299a72ecd116a5b9828a6cc9cf5eaf3a41e59cb))
 * controlled or uncontrolled input element for the lifetime of the component. ([8236b78](https://github.com/mukund-gpt/JobStack/commit/8236b788fd209fea590594a49f50aef9dc3a4bf4))
 * dropdown added in profile ([d442305](https://github.com/mukund-gpt/JobStack/commit/d4423057381268cf2b9d6b3c3fa51941391121a5))
 * dynamic change bg color of row when status update ([7e0fcc5](https://github.com/mukund-gpt/JobStack/commit/7e0fcc5e452b3b009082d4eafd674334243ca870))
@@ -15,6 +16,7 @@
 
 ### Features
 
+* add Top Companies component ([fea9ea9](https://github.com/mukund-gpt/JobStack/commit/fea9ea9509c1f7b64baf25c24e7c18e7fa50ffdf))
 * admin jobs page ([a1b8c25](https://github.com/mukund-gpt/JobStack/commit/a1b8c25d7d3fc44b45ce1c1cdbc2aec5dfc13807))
 * **admin:** Added edit company feature, updated company registration ([cf7c049](https://github.com/mukund-gpt/JobStack/commit/cf7c049f7ac94318d0f3f94489b7031f3de064ab))
 * analytics and speed insights added ([9ae1251](https://github.com/mukund-gpt/JobStack/commit/9ae1251ec67d10d42df910a3b869780b57cd023a))
@@ -30,6 +32,7 @@
 * filter jobs and details of latest jobs ([c802158](https://github.com/mukund-gpt/JobStack/commit/c8021584a0f9d878eb8084d449a1cd74b7cc5359))
 * forget and reset password ([f9332bf](https://github.com/mukund-gpt/JobStack/commit/f9332bf3a6eb48336cc6d5d2042d68f126337e09))
 * framer motion added ([a12a672](https://github.com/mukund-gpt/JobStack/commit/a12a6726da6ae0f7ed44843e65e74d4283d56b12))
+* google auth added ([553de57](https://github.com/mukund-gpt/JobStack/commit/553de57387c3f0ca89cf3ac0945be4151187b2b5))
 * image upload in register form ([f5bba39](https://github.com/mukund-gpt/JobStack/commit/f5bba3910f4ead2851afe5ee02ef355b4d91c1c8))
 * job and application controller ([095004a](https://github.com/mukund-gpt/JobStack/commit/095004aad857ae403d9703c99b966aeb9d004ee1))
 * job details ([a92f10a](https://github.com/mukund-gpt/JobStack/commit/a92f10a69da11e62504b5da1431e87ee4bfdc2b7))
@@ -37,6 +40,8 @@
 * models created ([476cd01](https://github.com/mukund-gpt/JobStack/commit/476cd01cf4fe43e111275c1c70824e1185293e95))
 * navbar and footer added ([77ddfa6](https://github.com/mukund-gpt/JobStack/commit/77ddfa643c52f7d9a27d503cb5ca6ccf11ae6016))
 * profile page ([0ea2a9c](https://github.com/mukund-gpt/JobStack/commit/0ea2a9c23385fe446108f6da499fc35b05e284f5))
+* profile pic add ([528d133](https://github.com/mukund-gpt/JobStack/commit/528d13380655a1d99b5f3c5561b264351dee4aea))
+* refactor job components and update environment configuration ([eb1dc50](https://github.com/mukund-gpt/JobStack/commit/eb1dc50dd8b807f0020fd4a1b2f19678986414f3))
 * search jobs handler ([4ba4e78](https://github.com/mukund-gpt/JobStack/commit/4ba4e7853593c5448a7b5f2604b11af4cb29a00c))
 * user controller ([2e9b366](https://github.com/mukund-gpt/JobStack/commit/2e9b366a32535999f59fd7e33056d6be45079fd6))
 * vite init ([67c22ca](https://github.com/mukund-gpt/JobStack/commit/67c22caa51049ff51cb83cfa2e8cf8e35fb7704e))
