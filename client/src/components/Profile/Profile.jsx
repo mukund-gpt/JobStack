@@ -57,7 +57,7 @@ const Profile = () => {
             <div className="flex items-center">
               <p className="m-1 sm:m-3">Skills </p>
               <div className="flex flex-wrap">
-                {skills.map((item, index) => (
+                {skills?.map((item, index) => (
                   <div
                     key={index}
                     className="badge m-1 sm:m-2 bg-white text-red-500 font-bold text-xs sm:text-sm p-1 sm:p-3 border-gray-300"

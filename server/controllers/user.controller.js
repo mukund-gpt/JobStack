@@ -6,8 +6,17 @@ import getDataUri from "../utils/datauri.js";
 export const updateProfile = async (req, res) => {
   const { fullname, email, phone, bio, skills } = req.body;
 
-  const profile = req.files.profile ? req.files.profile[0] : null;
-  const resume = req.files.resume ? req.files.resume[0] : null;
+  const MAX_FILE_SIZE = 1 * 1024 * 1024;
+  const profile = req.files?.profile?.[0];
+  const resume = req.files?.resume?.[0];
+
+  if (profile && profile.size > MAX_FILE_SIZE) {
+    return res.status(400).json({ message: "Profile must be under 1MB." });
+  }
+
+  if (resume && resume.size > MAX_FILE_SIZE) {
+    return res.status(400).json({ message: "Resume must be under 1MB." });
+  }
 
   try {
     const user = await User.findById(req.id);

@@ -18,7 +18,7 @@ const Job = ({ job }) => {
   };
 
   const isBookmarked = (job) => {
-    return bookmarks.some((bookmark) => bookmark._id === job?._id);
+    return bookmarks?.some((bookmark) => bookmark?._id === job?._id);
   };
 
   const bookmarkHandler = async () => {

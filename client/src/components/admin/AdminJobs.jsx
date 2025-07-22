@@ -18,6 +18,7 @@ const AdminJobs = () => {
           <Input
             className="sm:w-fit border-purple-300 font-bold shadow-md shadow-purple-200"
             onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search by job title..."
           />
           <Button onClick={() => navigate("/admin/jobs/create")}>
             Create New Job

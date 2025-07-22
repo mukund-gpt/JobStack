@@ -18,6 +18,7 @@ const Companies = () => {
           <Input
             className="sm:w-fit max-w-fit border-purple-300 font-bold shadow-md shadow-purple-200"
             onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search by company name..."
           />
           <Button
             className=""

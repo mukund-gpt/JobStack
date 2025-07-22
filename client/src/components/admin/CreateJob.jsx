@@ -17,6 +17,8 @@ const CreateJob = () => {
 
   const changeEventHandler = (e) => {
     const { name, value } = e.target;
+    console.log(`Name: ${name}, Value: ${value}`);
+
     setInput({ ...input, [name]: value });
   };
 
@@ -127,13 +129,21 @@ const CreateJob = () => {
 
           <div className="m-3">
             <Label className="m-1 p-1 font-bold text-amber-500">Job Type</Label>
-            <Input
-              placeholder="Enter job type (e.g., Full-time, Part-time)"
-              className="m-1 p-1 w-[250px] border-purple-400"
+            <select
+              className="m-1 p-1 w-[250px] border border-purple-400 bg-white rounded"
               name="jobType"
               value={input.jobType || ""}
               onChange={changeEventHandler}
-            />
+            >
+              <option value="" disabled>
+                Select job type
+              </option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Internship">Internship</option>
+              <option value="Contract">Contract</option>
+              <option value="Remote">Remote</option>
+            </select>
           </div>
 
           <div className="m-3">
